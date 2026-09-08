@@ -15,7 +15,7 @@ export default function useScan() {
     // MOCK BACKEND CALL — replace this block with a real API call later.
     const timer = setTimeout(() => {
       const mockResult = {
-        imageUrl: images[0]?.previewUrl,
+        images: images.map((img) => img.previewUrl),
         overallStatus: 'partial', // 'compliant' | 'partial' | 'non_compliant'
         rules: [
           { id: 1, name: 'MRP Declaration', status: 'pass', box: { x: 10, y: 10, w: 30, h: 10 } },
