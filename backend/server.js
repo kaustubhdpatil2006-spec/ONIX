@@ -1,5 +1,6 @@
 const uploadRoutes = require("./src/routes/upload");
 const productRoutes = require("./src/routes/product");
+const authRoutes = require("./src/routes/auth");
 const express = require("express");
 const supabase = require("./src/supabase");
 
@@ -7,6 +8,7 @@ const app = express();
 app.use(express.json());
 app.use("/api/scans", uploadRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/auth", authRoutes);
 console.log("UPLOAD ROUTE LOADED");
 app.get("/", (req, res) => {
     res.send("Hello ONIX");

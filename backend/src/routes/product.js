@@ -1,14 +1,10 @@
 const express = require("express");
-const supabase = require("../supabase");
+const authenticateUser = require("../middleware/authenticateUser");
 
 const router = express.Router();
 
-
-// POST /api/products
-router.post("/", async (req, res) => {
-
+router.post("/", authenticateUser, async (req, res) => {
     try {
-
         const {
             product_name,
             brand_name,
@@ -18,8 +14,6 @@ router.post("/", async (req, res) => {
             country_of_origin
         } = req.body;
 
-
-        // Check required field
         if (!product_name) {
             return res.status(400).json({
                 success: false,
@@ -27,9 +21,7 @@ router.post("/", async (req, res) => {
             });
         }
 
-
-        // Insert product into Supabase
-        const { data: productData, error: productError } = await supabase
+        const { data: productData, error: productError } = await req.supabase
             .from("products")
             .insert({
                 product_name,
@@ -42,10 +34,7 @@ router.post("/", async (req, res) => {
             .select()
             .single();
 
-
-        // Handle database error
         if (productError) {
-
             console.error("Product creation error:", productError);
 
             return res.status(500).json({
@@ -55,8 +44,6 @@ router.post("/", async (req, res) => {
             });
         }
 
-
-        // Success
         return res.status(201).json({
             success: true,
             message: "Product created successfully!",
@@ -64,7 +51,6 @@ router.post("/", async (req, res) => {
         });
 
     } catch (error) {
-
         console.error("Product route error:", error);
 
         return res.status(500).json({
@@ -74,6 +60,5 @@ router.post("/", async (req, res) => {
         });
     }
 });
-
 
 module.exports = router;
