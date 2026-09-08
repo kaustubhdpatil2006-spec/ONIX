@@ -6,6 +6,7 @@ import LoginPage from '../pages/LoginPage'
 import DashboardPage from '../pages/DashboardPage'
 import ScanPage from '../pages/ScanPage'
 import ResultsPage from '../pages/ResultsPage'
+import ReportPage from '../pages/ReportPage'
 import AdminPage from '../pages/AdminPage'
 
 // Guard component
@@ -23,6 +24,7 @@ export default function AppRouter() {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/scan" element={<ScanPage />} />
           <Route path="/results" element={<ResultsPage />} />
+          <Route path="/report" element={<ReportPage />} />
         </Route>
 
         {/* Protected: Admin only */}
