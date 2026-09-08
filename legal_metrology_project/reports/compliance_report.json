@@ -1,0 +1,94 @@
+{
+    "project": "Legal Metrology NLP and Rule Engine",
+    "rules_version": "Legal Metrology Packaged Commodities Rules, 2011 - SIH Prototype",
+    "selected_categories": [
+        "mrp",
+        "net_quantity",
+        "manufacturing_date",
+        "manufacturer_details",
+        "consumer_care",
+        "vegetarian_symbol",
+        "non_vegetarian_symbol"
+    ],
+    "ocr_text": "Product Name: Premium Biscuits\n\nMRP: Rs. 50.00 Inclusive of all taxes\n\nNet Quantity: 100 g\n\nManufactured by: ABC Foods Pvt. Ltd.,\nIndustrial Area, Pune, Maharashtra\n\nMfg Date: 05/2026\n\nConsumer Care: 1800123456\nEmail: care@abcfoods.com\n\nVegetarian\nGreen Dot",
+    "cleaned_text": "Product Name: Premium Biscuits\nMRP: Rs. 50.00 Inclusive of all taxes\nNet Quantity: 100 g\nManufactured by: ABC Foods Pvt. Ltd.,\nIndustrial Area, Pune, Maharashtra\nMfg Date: 05/2026\nConsumer Care: 1800123456\nEmail: care@abcfoods.com\nVegetarian\nGreen Dot",
+    "extracted_data": {
+        "mrp": "MRP: Rs. 50.00",
+        "net_quantity": "net quantity: 100 g",
+        "manufacturing_date": "05/2026",
+        "manufacturer_details": "ABC Foods Pvt. Ltd.,",
+        "consumer_care": "Consumer Care: 1800123456",
+        "vegetarian_symbol": "Vegetarian",
+        "non_vegetarian_symbol": null
+    },
+    "validation_results": {
+        "mrp": {
+            "value": "MRP: Rs. 50.00",
+            "required": true,
+            "status": "PASS",
+            "message": "MRP value detected",
+            "description": "Maximum Retail Price inclusive of all taxes"
+        },
+        "net_quantity": {
+            "value": "net quantity: 100 g",
+            "required": true,
+            "status": "PASS",
+            "message": "Net quantity with unit detected",
+            "description": "Net quantity in standard unit of weight, measure or number"
+        },
+        "manufacturing_date": {
+            "value": "05/2026",
+            "required": true,
+            "status": "PASS",
+            "message": "Manufacturing or packing date detected",
+            "description": "Month and year of manufacture or packing"
+        },
+        "manufacturer_details": {
+            "value": "ABC Foods Pvt. Ltd.,",
+            "required": true,
+            "status": "PASS",
+            "message": "Manufacturer-related details detected",
+            "description": "Name and address of manufacturer, packer or importer"
+        },
+        "consumer_care": {
+            "value": "Consumer Care: 1800123456",
+            "required": true,
+            "status": "PASS",
+            "message": "Consumer-care information detected",
+            "description": "Consumer-care contact details"
+        },
+        "vegetarian_symbol": {
+            "value": "Vegetarian",
+            "required": false,
+            "status": "PASS",
+            "message": "Vegetarian symbol or declaration detected",
+            "description": "Green vegetarian symbol for applicable products"
+        },
+        "non_vegetarian_symbol": {
+            "value": null,
+            "required": false,
+            "status": "NOT_APPLICABLE_OR_NOT_DETECTED",
+            "message": "Non-vegetarian symbol is missing",
+            "description": "Brown or red non-vegetarian symbol for applicable products"
+        }
+    },
+    "summary": {
+        "overall_status": "COMPLIANT",
+        "compliance_percentage": 100.0,
+        "total_required_fields": 5,
+        "passed_required_fields": 5,
+        "failed_required_fields": 0,
+        "passed_fields": [
+            "mrp",
+            "net_quantity",
+            "manufacturing_date",
+            "manufacturer_details",
+            "consumer_care"
+        ],
+        "failed_fields": [],
+        "conditional_fields": [
+            "vegetarian_symbol",
+            "non_vegetarian_symbol"
+        ]
+    }
+}

@@ -1,0 +1,87 @@
+{
+  "rules_version": "Legal Metrology Packaged Commodities Rules, 2011 - SIH Prototype",
+  "categories": {
+    "mrp": {
+      "required": true,
+      "description": "Maximum Retail Price inclusive of all taxes",
+      "patterns": [
+        "mrp",
+        "maximum retail price",
+        "retail sale price"
+      ]
+    },
+    "net_quantity": {
+      "required": true,
+      "description": "Net quantity in standard unit of weight, measure or number",
+      "patterns": [
+        "net quantity",
+        "net wt",
+        "net weight",
+        "net volume",
+        "quantity"
+      ]
+    },
+    "manufacturing_date": {
+      "required": true,
+      "description": "Month and year of manufacture or packing",
+      "patterns": [
+        "mfg",
+        "mfd",
+        "manufactured",
+        "manufacturing date",
+        "date of manufacture",
+        "packed",
+        "packing date"
+      ]
+    },
+    "manufacturer_details": {
+      "required": true,
+      "description": "Name and address of manufacturer, packer or importer",
+      "patterns": [
+        "manufactured by",
+        "manufactured for",
+        "packed by",
+        "packer",
+        "imported by",
+        "importer",
+        "manufacturer"
+      ]
+    },
+    "consumer_care": {
+      "required": true,
+      "description": "Consumer-care contact details",
+      "patterns": [
+        "consumer care",
+        "customer care",
+        "customer service",
+        "helpline",
+        "toll free",
+        "email",
+        "contact us"
+      ]
+    },
+    "vegetarian_symbol": {
+      "required": false,
+      "description": "Green vegetarian symbol for applicable products",
+      "patterns": [
+        "vegetarian",
+        "veg",
+        "green dot",
+        "green symbol"
+      ]
+    },
+    "non_vegetarian_symbol": {
+      "required": false,
+      "description": "Brown or red non-vegetarian symbol for applicable products",
+      "patterns": [
+        "non vegetarian",
+        "non-vegetarian",
+        "non veg",
+        "brown dot",
+        "red dot",
+        "brown symbol",
+        "red symbol"
+      ]
+    }
+  }
+}
