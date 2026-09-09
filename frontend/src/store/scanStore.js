@@ -1,19 +1,16 @@
 import { create } from 'zustand'
+import useAuthStore from './authStore'
 
 const useScanStore = create((set) => ({
-  // --- STATE ---
   images: [],
   isScanning: false,
   results: null,
 
-  // NEW: keeps every completed scan, most recent first.
-  // Not persisted on purpose for now — we'll swap this for a real
-  // "fetch scan history from backend" call later. Mock data lives here
-  // just so Dashboard has something to render before that exists.
   history: [
     {
       id: 'mock-1',
-      date: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(), // 2 hrs ago
+      date: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(),
+      officerName: 'Aditri Patil', // NEW
       images: [],
       rules: [
         { id: 1, name: 'MRP Declaration', status: 'pass' },
@@ -26,7 +23,8 @@ const useScanStore = create((set) => ({
     },
     {
       id: 'mock-2',
-      date: new Date(Date.now() - 1000 * 60 * 60 * 26).toISOString(), // yesterday
+      date: new Date(Date.now() - 1000 * 60 * 60 * 26).toISOString(),
+      officerName: 'Rahul Verma', // NEW
       images: [],
       rules: [
         { id: 1, name: 'MRP Declaration', status: 'pass' },
@@ -39,7 +37,6 @@ const useScanStore = create((set) => ({
     },
   ],
 
-  // --- ACTIONS ---
   addImages: (newFiles) =>
     set((state) => {
       const mapped = newFiles.map((file) => ({
@@ -59,19 +56,20 @@ const useScanStore = create((set) => ({
 
   setScanning: (value) => set({ isScanning: value }),
 
-  // UPDATED: now also pushes the completed scan into history
   setResults: (data) =>
     set((state) => {
+      const currentUser = useAuthStore.getState().user // read auth store directly, no hook needed here
       const scanRecord = {
         id: crypto.randomUUID(),
         date: new Date().toISOString(),
+        officerName: currentUser?.name || 'Unknown',
         images: data.images,
         rules: data.rules,
       }
       return {
         results: data,
         isScanning: false,
-        history: [scanRecord, ...state.history], // newest first
+        history: [scanRecord, ...state.history],
       }
     }),
 }))

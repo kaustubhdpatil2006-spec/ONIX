@@ -12,7 +12,8 @@ export default function ResultsPage() {
   const navigate = useNavigate()
 
   useScan()
-
+  console.log(useScanStore.getState().history) 
+  
   if (isScanning) {
     return <ScanningOverlay />
   }
