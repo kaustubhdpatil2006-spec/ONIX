@@ -46,6 +46,14 @@ const useScanStore = create((set) => ({
       }))
       return { images: [...state.images, ...mapped] }
     }),
+  setImages: (newFiles) =>
+  set({
+    images: newFiles.map((file) => ({
+      id: crypto.randomUUID(),
+      file,
+      previewUrl: URL.createObjectURL(file),
+    })),
+  }),  
 
   removeImage: (id) =>
     set((state) => ({
